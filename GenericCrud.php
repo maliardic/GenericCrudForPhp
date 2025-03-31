@@ -2,14 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: mali
- * Date: 24.01.2019
+ * Date: 24.03.2025
  * Time: 11:42
  */
 
-//require_once APP_CORE_DIR . 'db.php';
-require_once APP_CORE_DIR . 'Config.php';
-require_once APP_CORE_DIR . 'Language.php';
-require_once APP_CORE_DIR . 'Auth.class.php';
+require_once APP_CORE_DIR . 'Config.php'; //Configs 
+require_once APP_CORE_DIR . 'Language.php';  // Localizations
+require_once APP_CORE_DIR . 'Auth.class.php'; //Auth
 
 class GenericModel
 {
@@ -198,27 +197,7 @@ class GenericModel
         return $row ? (int)$row['count'] : 0;
     }
 
-    function generateDynamicForm($fieldList, $row = []) {
-        echo '<form name="form_panel" action="" id="form_panel" class="form_cont">';
-        echo '<input type="text" name="id" id="id" class="hide"  value="' . intval($row['id'] ?? 0) . '" />';
-        echo '<input type="text" name="type" id="type" class="hide"  value="' . htmlspecialchars($row['type'] ?? '') . '" />';
-        echo '<input type="text" name="parent_id" id="parent_id" class="hide3"  value="' . htmlspecialchars($row['parent_id'] ?? '') . '" />';
-        echo '<input type="text" name="form_submit" id="form_submit" class="hide"  value="" />';
 
-        foreach ($fieldList as $field => $settings) {
-            $label = $settings['label'] ?? ucfirst($field);
-            $type = $settings['type'] ?? 'input';
-            $options = $settings['options'] ?? null;
-            $value = $row[$field] ?? '';
-            $class = $settings['class'] ?? '';
-            $disabled = $settings['disabled'] ?? '';
-
-            // MFuncs form_print ile basıyoruz
-            MFuncs::form_print('', '', $field, $label, $type, $value, $options, $disabled, $class);
-        }
-
-        echo '</form>';
-    }
 
 }
 
